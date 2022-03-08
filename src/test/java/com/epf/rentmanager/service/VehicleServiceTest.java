@@ -1,0 +1,95 @@
+package com.epf.rentmanager.service;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.when;
+
+import com.epf.rentmanager.dao.VehicleDao;
+import com.epf.rentmanager.exception.DaoException;
+import com.epf.rentmanager.exception.ServiceException;
+import com.epf.rentmanager.model.Vehicle;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+
+@RunWith(MockitoJUnitRunner.class)
+public class VehicleServiceTest {
+	
+	 @InjectMocks
+	   private VehicleService vehicleService;
+
+	   @Mock
+	   private VehicleDao vehicleDao;
+
+	   /**
+	    * @throws DaoException
+	    */
+	   @Test
+	   public void findAll_should_fail_when_dao_throws_exception() throws DaoException {
+	       // When
+	       when(this.vehicleDao.findAll()).thenThrow(DaoException.class);
+
+	       // Then
+	       assertThrows(ServiceException.class, () -> vehicleService.findAll());
+	   }
+	   
+	   /**
+	    * @throws DaoException
+	    */
+	   @Test
+	   public void count_dao_throws_exception() throws DaoException {
+	       // When
+	       when(vehicleDao.count()).thenThrow(DaoException.class);
+	 
+	       // Then
+	       assertThrows(ServiceException.class, () -> vehicleService.count());
+	   }
+	   
+	   /**
+	    * @throws DaoException
+	    */
+	   @Test
+	   public void delete_dao_throws_exception() throws DaoException {
+		   
+	        Vehicle CorrectVehicle = new Vehicle(1, "Citroen", 4);
+
+	       // When
+	       doThrow(new DaoException("Exception occured")).when(vehicleDao).delete(CorrectVehicle);
+	       // Then
+	       assertThrows(ServiceException.class, () -> vehicleService.delete(CorrectVehicle));
+	   }
+	   
+	   /**
+	    * @throws DaoException
+	    */
+	   @Test
+	   public void create_dao_throws_exception() throws DaoException {
+		   
+	        Vehicle CorrectVehicle = new Vehicle(1, "Citroen", 4);
+	       
+	       // When
+	       when(vehicleDao.create(CorrectVehicle)).thenThrow(DaoException.class);
+	       
+	       // Then
+	       assertThrows(ServiceException.class, () -> vehicleService.create(CorrectVehicle));
+	   }
+	   
+	   /**
+	    * @throws DaoException
+	    */
+	   @Test
+	   public void modifier_dao_throws_exception() throws DaoException {
+		   
+	        Vehicle CorrectVehicle = new Vehicle(1, "Citroen", 4);
+	       
+	       // When
+	       when(vehicleDao.modifier(CorrectVehicle)).thenThrow(DaoException.class);
+	       
+	       // Then
+	       assertThrows(ServiceException.class, () -> vehicleService.modifier(CorrectVehicle));
+	   }
+
+}
