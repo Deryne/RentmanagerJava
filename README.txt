@@ -2,7 +2,7 @@ Deryne Four
 deryne.four@epfedu.fr
 
 Projet Rentmanager
-Il s'agit d'un projet permettant de gérer et visualiser des locations de voiture par des clients. Il permet sur une adresse locale de :
+Il s'agit d'un projet permettant de gérer et visualiser des locations de voitures par des clients. Il permet sur une adresse locale de :
 - Créer des clients, des voitures et des réservations
 - Visualiser les clients, voitures et réservations existants
 - Supprimer  les clients, voitures et réservations existants
@@ -29,11 +29,10 @@ Problèmes rencontrés :
 
 
 Axes d'amélioration :
-- Amélioration de la fonction Update pour un côté plus User Friendly
+- Amélioration de la fonction Update (Modifier) pour un côté plus User Friendly
 
 - Implémentation des contraintes restantes
 
 
 Pour lancer le projet :
-- le télécharger (oui)
 - faire mvn tomcat7:run dans le Terminal après s'être dirigigé dans le dossier du projet (ici rentmanager)
