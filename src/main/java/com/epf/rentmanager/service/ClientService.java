@@ -34,9 +34,9 @@ public class ClientService {
 		} else if (!client.LenghtLastname()) {
 			throw new ServiceException("Nom possedant plus de 3 caracteres requis");
 		}
-//		else if(findEmail(client)){
-//			throw new ServiceException("Mail existant");
-//		}
+		else if(!findEmail(client)){
+			throw new ServiceException("Mail existant");
+		}
 		else {
 			try {
 				return clientDao.create(client);
