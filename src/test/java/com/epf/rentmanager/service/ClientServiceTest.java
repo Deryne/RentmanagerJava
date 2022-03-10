@@ -30,10 +30,8 @@ public class ClientServiceTest {
     */
    @Test
    public void findAll_should_fail_when_dao_throws_exception() throws DaoException {
-       // When
        when(this.clientDao.findAll()).thenThrow(DaoException.class);
-
-       // Then
+     
        assertThrows(ServiceException.class, () -> clientService.findAll());
    }
 
@@ -42,10 +40,8 @@ public class ClientServiceTest {
     */
    @Test
    public void count_dao_throws_exception() throws DaoException {
-       // When
        when(clientDao.count()).thenThrow(DaoException.class);
  
-       // Then
        assertThrows(ServiceException.class, () -> clientService.count());
    }
    
@@ -57,9 +53,7 @@ public class ClientServiceTest {
 	   
        Client legalClient = new Client("Smith", "John", "smith.john@epf.fr", LocalDate.parse("2000-11-02"));
 
-       // When
        doThrow(new DaoException("Exception occured")).when(clientDao).delete(legalClient);
-       // Then
        assertThrows(ServiceException.class, () -> clientService.delete(legalClient));
    }
    
@@ -71,10 +65,8 @@ public class ClientServiceTest {
 	   
        Client legalClient = new Client("Smith", "John", "smith.john@epf.fr", LocalDate.parse("2000-11-02"));
        
-       // When
        when(clientDao.create(legalClient)).thenThrow(DaoException.class);
        
-       // Then
        assertThrows(ServiceException.class, () -> clientService.create(legalClient));
    }
    
@@ -86,10 +78,8 @@ public class ClientServiceTest {
 	   
        Client legalClient = new Client("Smith", "John", "smith.john@epf.fr", LocalDate.parse("2000-11-02"));
        
-       // When
        when(clientDao.modifier(legalClient)).thenThrow(DaoException.class);
        
-       // Then
        assertThrows(ServiceException.class, () -> clientService.modifier(legalClient));
    }
    
