@@ -29,13 +29,10 @@ public class ReservationServiceTest {
 	   /**
 	    * @throws DaoException
 	    */
-	   
 	   @Test
 	   public void findAll_should_fail_when_dao_throws_exception() throws DaoException {
-	       // When
 	       when(this.reservationDao.findAll()).thenThrow(DaoException.class);
 
-	       // Then
 	       assertThrows(ServiceException.class, () -> reservationService.findAll());
 	   }
 	   
@@ -44,10 +41,8 @@ public class ReservationServiceTest {
 	    */
 	   @Test
 	   public void count_dao_throws_exception() throws DaoException {
-	       // When
 	       when(reservationDao.count()).thenThrow(DaoException.class);
 	 
-	       // Then
 	       assertThrows(ServiceException.class, () -> reservationService.count());
 	   }
 	   
@@ -60,9 +55,7 @@ public class ReservationServiceTest {
 	        Reservation legalReservation = new Reservation(1 , 1, 1, LocalDate.parse("2020-03-01"),
 	                LocalDate.parse("2020-03-04"));
 
-	       // When
 	       doThrow(new DaoException("Exception occured")).when(reservationDao).delete(legalReservation);
-	       // Then
 	       assertThrows(ServiceException.class, () -> reservationService.delete(legalReservation));
 	   }
 	   
@@ -74,10 +67,8 @@ public class ReservationServiceTest {
 		   
 	        Reservation legalReservation = new Reservation(1 , 1, 1, LocalDate.parse("2020-03-01"),
 	                LocalDate.parse("2020-03-04"));	       
-	       // When
 	       when(reservationDao.create(legalReservation)).thenThrow(DaoException.class);
 	       
-	       // Then
 	       assertThrows(ServiceException.class, () -> reservationService.create(legalReservation));
 	   }
 	   
@@ -89,10 +80,9 @@ public class ReservationServiceTest {
 		   
 	        Reservation legalReservation = new Reservation(1 , 1, 1, LocalDate.parse("2020-03-01"),
 	                LocalDate.parse("2020-03-04"));	 	       
-	       // When
-	       when(reservationDao.modifier(legalReservation)).thenThrow(DaoException.class);
+
+		when(reservationDao.modifier(legalReservation)).thenThrow(DaoException.class);
 	       
-	       // Then
 	       assertThrows(ServiceException.class, () -> reservationService.modifier(legalReservation));
 	   }
 
