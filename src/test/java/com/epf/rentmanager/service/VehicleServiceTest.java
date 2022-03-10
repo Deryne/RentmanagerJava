@@ -29,10 +29,8 @@ public class VehicleServiceTest {
 	    */
 	   @Test
 	   public void findAll_should_fail_when_dao_throws_exception() throws DaoException {
-	       // When
 	       when(this.vehicleDao.findAll()).thenThrow(DaoException.class);
 
-	       // Then
 	       assertThrows(ServiceException.class, () -> vehicleService.findAll());
 	   }
 	   
@@ -41,10 +39,8 @@ public class VehicleServiceTest {
 	    */
 	   @Test
 	   public void count_dao_throws_exception() throws DaoException {
-	       // When
 	       when(vehicleDao.count()).thenThrow(DaoException.class);
 	 
-	       // Then
 	       assertThrows(ServiceException.class, () -> vehicleService.count());
 	   }
 	   
@@ -56,9 +52,7 @@ public class VehicleServiceTest {
 		   
 	        Vehicle CorrectVehicle = new Vehicle(1, "Citroen", 4);
 
-	       // When
 	       doThrow(new DaoException("Exception occured")).when(vehicleDao).delete(CorrectVehicle);
-	       // Then
 	       assertThrows(ServiceException.class, () -> vehicleService.delete(CorrectVehicle));
 	   }
 	   
@@ -70,10 +64,8 @@ public class VehicleServiceTest {
 		   
 	        Vehicle CorrectVehicle = new Vehicle(1, "Citroen", 4);
 	       
-	       // When
 	       when(vehicleDao.create(CorrectVehicle)).thenThrow(DaoException.class);
 	       
-	       // Then
 	       assertThrows(ServiceException.class, () -> vehicleService.create(CorrectVehicle));
 	   }
 	   
@@ -85,10 +77,8 @@ public class VehicleServiceTest {
 		   
 	        Vehicle CorrectVehicle = new Vehicle(1, "Citroen", 4);
 	       
-	       // When
 	       when(vehicleDao.modifier(CorrectVehicle)).thenThrow(DaoException.class);
 	       
-	       // Then
 	       assertThrows(ServiceException.class, () -> vehicleService.modifier(CorrectVehicle));
 	   }
 
